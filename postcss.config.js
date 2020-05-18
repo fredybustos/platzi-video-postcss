@@ -1,29 +1,17 @@
+const postcssPresetEnv = require('postcss-preset-env')
 module.exports = {
   plugins: [
-    // require('autoprefixer')({
-    //   grid: true
-    // }),
-    require('postcss-import')({
-      plugins: [require('stylelint')],
-    }),
-    require('postcss-font-magician')({
-      variants: {
-        Lato: {
-          '300': [],
-          '400': [],
-        },
+    postcssPresetEnv({
+      autoprefixer: {
+        grid: true,
       },
-    }),
-    require('postcss-cssnext')({
+      browsers: ['last 1 version', '> 1%', 'not dead'],
+      stage: 1,
       features: {
-        autoprefixer: {
-          grid: true,
-          flexbox: false,
-        },
-        customProperties: false,
-        calc: false,
+        'media-query-ranges': true,
+        'nesting-rules': true,
+        'custom-media-queries': true,
       },
     }),
-    require('css-mqpacker'),
   ],
 }
